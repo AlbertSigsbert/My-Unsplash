@@ -1,7 +1,7 @@
 
 function Grid(props) {
     return (
-        <div className="grid grid-flow-row-dense gap-8 grid-cols-3 my-8">
+        <div className="grid grid-flow-row-dense gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-8">
         <div>
             <img src="/img/airpods-pro.jpg" className="rounded-2xl" alt="AirpodsPro" />
         </div>
