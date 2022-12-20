@@ -1,14 +1,23 @@
-// import Grid from "./Grid";
-// import Header from "./Header";
-import SignUp from "./SignUp";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+//pages
+import Home from "../pages/home";
+import Login from "../pages/Login";
+import Signup from "../pages/Signup";
+import Navbar from "./Layout/Navbar";
 
 function App() {
   return (
-    <div className="mx-[6%]">
-       <SignUp/>
-       {/* <Header/>
-       <Grid /> */}
-    </div>
+    <BrowserRouter>
+      <Navbar/>
+      <main>
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="login" element={<Login />} />
+        </Routes>
+      </main>
+    </BrowserRouter>
   );
 }
 
