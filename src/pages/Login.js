@@ -1,10 +1,8 @@
-import React from 'react';
+import LoginTemplate from '../components/Login';
 
 function Login(props) {
     return (
-        <div>
-            <h1>Login</h1>
-        </div>
+        <LoginTemplate/>
     );
 }
 

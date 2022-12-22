@@ -1,18 +1,15 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import Logo from "./Logo";
 
-function SignUp(props) {
-  const [username, setUsername] = useState("");
+function LoginTemplate(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(username, email, password, passwordConfirm);
-  };
+    console.log(email,password);
+  }
 
   return (
     <section>
@@ -25,23 +22,6 @@ function SignUp(props) {
             </h1>
 
             <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
-              <div>
-                <label
-                  htmlFor="username"
-                  className="block mb-2 text-sm font-medium text-gray-900"
-                >
-                  Your username
-                </label>
-                <input
-                  type="text"
-                  name="username"
-                  id="username"
-                  onChange={(e) => setUsername(e.target.value)}
-                  value={username}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
-                  placeholder="John Doe"
-                />
-              </div>
               <div>
                 <label
                   htmlFor="email"
@@ -76,38 +56,13 @@ function SignUp(props) {
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
                 />
               </div>
-              <div>
-                <label
-                  htmlFor="confirm-password"
-                  className="block mb-2 text-sm font-medium text-gray-900"
-                >
-                  Confirm password
-                </label>
-                <input
-                  type="password"
-                  name="confirm-password"
-                  id="confirm-password"
-                  onChange={(e) => setPasswordConfirm(e.target.value)}
-                  value={passwordConfirm}
-                  placeholder="••••••••"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
-                />
-              </div>
+
               <button
                 type="submit"
                 className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               >
-                Create an account
+                Login
               </button>
-              <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Already have an account?{" "}
-                <Link
-                  to="/login"
-                  className="font-medium text-blue-600 hover:underline dark:text-blue-500"
-                >
-                  Login here
-                </Link>
-              </p>
             </form>
           </div>
         </div>
@@ -116,4 +71,4 @@ function SignUp(props) {
   );
 }
 
-export default SignUp;
+export default LoginTemplate;
