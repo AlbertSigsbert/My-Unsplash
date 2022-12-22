@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSignUp } from "../hooks/useSignup";
 import Logo from "./Logo";
 
 function SignUp(props) {
@@ -7,11 +8,12 @@ function SignUp(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
+  const { signup, isPending, error } = useSignUp();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(username, email, password, passwordConfirm);
+    signup(username, email, password, passwordConfirm);
   };
 
   return (
@@ -93,12 +95,22 @@ function SignUp(props) {
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
                 />
               </div>
-              <button
-                type="submit"
-                className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-              >
-                Create an account
-              </button>
+              {!isPending && (
+                <button
+                  type="submit"
+                  className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                >
+                  Create an account
+                </button>
+              )}
+              {isPending && (
+                <button
+                  className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                  disabled
+                >
+                  Loading...
+                </button>
+              )}
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Already have an account?{" "}
                 <Link
@@ -111,6 +123,15 @@ function SignUp(props) {
             </form>
           </div>
         </div>
+        {error && (
+          <div
+            className="p-4 my-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
+            role="alert"
+          >
+            <span className="font-medium">Error! </span>
+            {error}
+          </div>
+        )}
       </div>
     </section>
   );
