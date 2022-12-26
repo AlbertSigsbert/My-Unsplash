@@ -1,13 +1,9 @@
-import React from 'react';
-import Grid from '../components/Grid';
-import Header from '../components/Header';
+import Template from "../components/Home/Template";
+
 
 function Home(props) {
     return (
-        <section className="mx-[6%]">
-            <Header/>
-            <Grid/>
-        </section>
+        <Template/>
     );
 }
 

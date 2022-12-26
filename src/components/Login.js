@@ -1,15 +1,17 @@
 import { useState } from "react";
+import { useLogin } from "../hooks/useLogin";
 import Logo from "./Logo";
 
 function LoginTemplate(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login, error, isPending } = useLogin();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(email,password);
-  }
+    login(email, password);
+  };
 
   return (
     <section>
@@ -57,15 +59,34 @@ function LoginTemplate(props) {
                 />
               </div>
 
-              <button
-                type="submit"
-                className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-              >
-                Login
-              </button>
+              {!isPending && (
+                <button
+                  type="submit"
+                  className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                >
+                  Login
+                </button>
+              )}
+              {isPending && (
+                <button
+                  className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                  disabled
+                >
+                  Loading...
+                </button>
+              )}
             </form>
           </div>
         </div>
+        {error && (
+          <div
+            className="p-4 my-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
+            role="alert"
+          >
+            <span className="font-medium">Error! </span>
+            {error}
+          </div>
+        )}
       </div>
     </section>
   );
