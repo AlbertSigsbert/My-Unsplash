@@ -20,8 +20,6 @@ export function ModalContextProvider({children}) {
        showModal:false
     });
 
-    console.log('ModalContext State:', state);
-
     return (
         <ModalContext.Provider value={{...state, dispatch}}>
             {children}

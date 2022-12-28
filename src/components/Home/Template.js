@@ -1,15 +1,24 @@
+//Context Providers
+import { ModalContextProvider } from "../../context/ModalContext";
+import { UploadContextProvider } from "../../context/UploadContext";
+
+//Page components
 import Grid from "./Grid";
 import Header from "./Header";
 import UploadForm from "./UploadForm";
-import { ModalContextProvider } from "../../context/ModalContext";
+import ProgressBar from "./ProgressBar";
+
 
 function Template(props) {
   return (
     <section className="mx-[6%]">
       <ModalContextProvider>
-        <Header />
-        <UploadForm />
-        <Grid />
+        <UploadContextProvider>
+          <Header />
+          <ProgressBar />
+          <UploadForm />
+          <Grid />
+        </UploadContextProvider>
       </ModalContextProvider>
     </section>
   );

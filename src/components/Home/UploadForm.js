@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useModalContext } from "../../hooks/useModalContext";
+import useStorage from "../../hooks/useStorage";
 
 const backdropVariants = {
   hidden: { opacity: 0 },
@@ -18,6 +19,19 @@ function UploadForm() {
   const [error, setError] = useState(null);
 
   const { showModal, dispatch } = useModalContext();
+  const { upload } = useStorage();
+
+  const resetForm = () => {
+    setLabel("");
+    setImage(null);
+  };
+
+  const handleSubmit =  (e) => {
+    e.preventDefault();
+     upload(image);
+    resetForm();
+    dispatch({ type: "REMOVE" });
+  };
 
   const handleChange = (e) => {
     let selected = e.target.files[0];
@@ -31,9 +45,9 @@ function UploadForm() {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(label,image);
+  const handleCancel = () => {
+    resetForm();
+    dispatch({ type: "REMOVE" });
   };
 
   return (
@@ -91,17 +105,20 @@ function UploadForm() {
 
               <div className="mt-6 flex space-x-4 justify-end">
                 <button
-                  onClick={() => dispatch({ type: "REMOVE" })}
+                  onClick={handleCancel}
                   className="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
                 >
                   Cancel
                 </button>
-                <button
-                  type="submit"
-                  className="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
-                >
-                  Submit
-                </button>
+           
+              
+                  <button
+                    type="submit"
+                    className="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+                  >
+                    Submit
+                  </button>
+            
               </div>
             </form>
 
