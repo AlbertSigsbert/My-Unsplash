@@ -1,14 +1,7 @@
 import { initializeApp } from "firebase/app";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  updateProfile,
-  signOut,
-  signInWithEmailAndPassword,
-  onAuthStateChanged
-} from "firebase/auth";
-
+import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
+import { getFirestore } from "firebase/firestore";
 
 
 const firebaseConfig = {
@@ -20,7 +13,7 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
-// Initialize Firebase
+// Initialize Firebase App
 const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase Authentication and get a reference to the service
@@ -29,12 +22,7 @@ const auth = getAuth(app);
 // Initialize Firebase storage and get a reference to the service
 const storage = getStorage(app);
 
-export {
-  auth,
-  createUserWithEmailAndPassword,
-  updateProfile,
-  signOut,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  storage
-};
+// Initialize Cloud Firestore and get a reference to the service
+const db = getFirestore(app);
+
+export { auth, storage, db };

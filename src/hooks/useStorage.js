@@ -6,7 +6,6 @@ import { useUploadContext } from "./useUploadContext";
 
 const useStorage = () => {
   const [isCancelled, setIsCancelled] = useState(false);
-  
   const {dispatch} = useUploadContext();
 
   const upload = (file) => {

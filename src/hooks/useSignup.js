@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { auth, createUserWithEmailAndPassword, updateProfile  } from "../firebase/config";
+import { auth } from "../firebase/config";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useAuthContext } from "./useAuthContext";
 
 export const useSignUp = () => {
@@ -20,7 +21,6 @@ export const useSignUp = () => {
 
       //Signup user
       const res = await createUserWithEmailAndPassword(auth, email, password);
-    
 
       if (!res) {
         throw new Error("Could not complete signup");
@@ -30,27 +30,24 @@ export const useSignUp = () => {
       await updateProfile(res.user, { displayName: username });
 
       //Dispatch a login action
-      dispatch({type:'LOGIN', payload:res.user});
+      dispatch({ type: "LOGIN", payload: res.user });
 
-      if(!isCancelled){
+      if (!isCancelled) {
         setIsPending(false);
         setError(null);
       }
-
     } catch (err) {
-      if(!isCancelled){
+      if (!isCancelled) {
         console.log(err.message);
         setError(err.message);
         setIsPending(false);
-
       }
-      
     }
   };
 
   useEffect(() => {
     return () => setIsCancelled(true);
- },[]);
+  }, []);
 
   return { signup, isPending, error };
 };
