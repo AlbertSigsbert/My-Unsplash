@@ -1,29 +1,32 @@
+import { useCollection } from "../../hooks/useCollection";
+
 function Grid(props) {
+  const { documents: images, error } = useCollection('images');
   return (
-    <div className="grid grid-flow-row-dense gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-8">
-      <div>
-        <img
-          src="/img/airpods-pro.jpg"
-          className="rounded-2xl"
-          alt="AirpodsPro"
-        />
-      </div>
-      <div>
-        <img src="/img/airpods.jpg" className="rounded-2xl" alt="Airpods" />
-      </div>
-      <div>
-        <img src="/img/blog1.jpg" className="rounded-2xl" alt="Blog1" />
-      </div>
-      <div>
-        <img src="/img/blog2.jpg " className="rounded-2xl" alt="Blog2" />
-      </div>
-      <div>
-        <img src="/img/slide1.jpg" className="rounded-2xl" alt="Slide1" />
-      </div>
-      <div>
-        <img src="/img/slide2.jpg" className="rounded-2xl" alt="Slide2" />
-      </div>
-    </div>
+    <>
+      {error && (
+        <div
+          className="p-4 my-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
+          role="alert"
+        >
+          <span className="font-medium">Error! </span>
+          {error}
+        </div>
+      )}
+      {images && (
+        <div className="grid grid-flow-row-dense gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-8">
+          {images.map((img) => (
+            <div key={img.id}>
+              <img
+                src={img.url}
+                className="rounded-2xl"
+                alt={img.label}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+    </>
   );
 }
 
