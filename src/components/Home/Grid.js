@@ -1,11 +1,13 @@
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useCollection } from "../../hooks/useCollection";
 
-
 function Grid(props) {
   const { user } = useAuthContext();
 
-  const { documents: images, error } = useCollection('images',["uid","==", user.uid]);
+  const { documents: images, error } = useCollection("images", 
+  [ "uid","==",user.uid ],
+  [ "createdAt", "desc" ],
+  );
   return (
     <>
       {error && (
@@ -21,11 +23,7 @@ function Grid(props) {
         <div className="grid grid-flow-row-dense gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-8">
           {images.map((img) => (
             <div key={img.id}>
-              <img
-                src={img.url}
-                className="rounded-2xl"
-                alt={img.label}
-              />
+              <img src={img.url} className="rounded-2xl" alt={img.label} />
             </div>
           ))}
         </div>
