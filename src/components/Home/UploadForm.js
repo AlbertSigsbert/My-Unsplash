@@ -1,5 +1,5 @@
-import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useModalContext } from "../../hooks/useModalContext";
 import useStorage from "../../hooks/useStorage";
 
@@ -27,10 +27,16 @@ function UploadForm() {
   };
 
   const handleSubmit =  (e) => {
-    e.preventDefault();
-     upload(image);
-    resetForm();
-    dispatch({ type: "REMOVE" });
+      e.preventDefault();
+
+      //Upload image to firebase storage
+      upload(image, label);
+
+      //Reset form fields
+      resetForm();
+
+      //Remove the modal
+      dispatch({ type: "REMOVE" });
   };
 
   const handleChange = (e) => {

@@ -4,8 +4,6 @@ import { useUploadContext } from "../../hooks/useUploadContext";
 function ProgressBar() {
   const { progress, url, dispatch } = useUploadContext();
 
-  console.log(progress,url);
-
   useEffect(() => {
     if(url){
         dispatch({type:'SET_PROGRESS', payload:0});

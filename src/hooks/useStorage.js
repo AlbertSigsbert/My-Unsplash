@@ -2,13 +2,16 @@ import { useState, useEffect } from "react";
 import { storage } from "../firebase/config";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useUploadContext } from "./useUploadContext";
+import { useFirestore } from "./useFirestore";
+
 
 
 const useStorage = () => {
   const [isCancelled, setIsCancelled] = useState(false);
   const {dispatch} = useUploadContext();
+  const {addDocument} = useFirestore('images');
 
-  const upload = (file) => {
+  const upload = (file,label) => {
    
     try {
       const storageRef = ref(storage, file.name);
@@ -26,6 +29,14 @@ const useStorage = () => {
         async () => {
           const url = await getDownloadURL(uploadTask.snapshot.ref);
           dispatch({type:'SET_URL', payload:url});
+
+
+          //Upload image to Firestore
+          const uploadDoc = {label, url};
+
+          addDocument(uploadDoc);
+
+         
         }
       );
 

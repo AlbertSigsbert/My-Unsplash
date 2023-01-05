@@ -1,6 +1,8 @@
 import { useState, useEffect, useReducer } from "react";
 import { db } from "../firebase/config";
-import { collection, addDoc } from "firebase/firestore"; 
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { useAuthContext } from "./useAuthContext";
+
 
 
 let initialState = {
@@ -13,7 +15,11 @@ let initialState = {
 const firestoreReducer = (state, action) => {
    switch(action.type){
      case 'IS_PENDING':
-      return {...state, isPending:true }
+      return {isPending:true, document:null, success:false, error:null }
+     case 'ADDED_DOCUMENT':
+      return {isPending:false, document:action.payload, success:true, error:null }
+     case 'ERROR':
+      return {isPending:false, document:null, success:false, error:action.payload }
      default:
         return state
    }
@@ -23,6 +29,7 @@ const firestoreReducer = (state, action) => {
 export const useFirestore = (collectionName) => {
    const [response, dispatch] = useReducer(firestoreReducer, initialState);
    const [isCancelled, setIsCancelled] = useState(false);
+   const {user} = useAuthContext();
 
   //collection ref
   const collectionRef = collection(db, collectionName);
@@ -32,14 +39,18 @@ export const useFirestore = (collectionName) => {
       dispatch({type:'IS_PENDING'})
 
       try {
-         const addedDoc = await addDoc(collectionRef, doc);
-         console.log("Document written with ID: ", addedDoc.id);
+         const createdAt = serverTimestamp();
+
+         const addedDoc = await addDoc(collectionRef, {...doc, createdAt, uid: user.uid});
+         // console.log("Document written with ID: ", addedDoc.id);
 
          if (!isCancelled) {
-            dispatch({type:'ADDED_DOCUMENT'});
+            dispatch({type:'ADDED_DOCUMENT', payload: addedDoc});
          }
        } catch (e) {
-         console.error("Error adding document: ", e);
+        if(!isCancelled){
+          dispatch({type:'ERROR', payload: e.message});
+        }
        }
   }
 
@@ -47,6 +58,8 @@ export const useFirestore = (collectionName) => {
   const deleteDocument = (id) => {
 
   }
+
+  
   useEffect(() => {
     return () => setIsCancelled(true);
   }, []);
