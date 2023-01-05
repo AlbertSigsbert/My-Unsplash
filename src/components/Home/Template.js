@@ -7,6 +7,7 @@ import Grid from "./Grid";
 import Header from "./Header";
 import UploadForm from "./UploadForm";
 import ProgressBar from "./ProgressBar";
+import DeleteForm from "./DeleteForm";
 
 
 function Template(props) {
@@ -17,6 +18,7 @@ function Template(props) {
           <Header />
           <ProgressBar />
           <UploadForm />
+          <DeleteForm/>
           <Grid />
         </UploadContextProvider>
       </ModalContextProvider>

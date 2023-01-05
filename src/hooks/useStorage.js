@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { storage } from "../firebase/config";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 import { useUploadContext } from "./useUploadContext";
 import { useFirestore } from "./useFirestore";
 
@@ -51,11 +51,18 @@ const useStorage = () => {
     }
   };
 
+  const deleteImage = async (url) => {
+    const imgRef = ref(storage, url);
+
+    // Delete the file
+    await deleteObject(imgRef);
+  }
+
   useEffect(() => {
     return () => setIsCancelled(true);
  },[]);
 
-  return { upload };
+  return { upload, deleteImage };
 };
 
 export default useStorage;

@@ -1,6 +1,6 @@
 import { useState, useEffect, useReducer } from "react";
 import { db } from "../firebase/config";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp, deleteDoc, doc } from "firebase/firestore";
 import { useAuthContext } from "./useAuthContext";
 
 
@@ -18,6 +18,8 @@ const firestoreReducer = (state, action) => {
       return {isPending:true, document:null, success:false, error:null }
      case 'ADDED_DOCUMENT':
       return {isPending:false, document:action.payload, success:true, error:null }
+     case 'DELETED_DOCUMENT':
+      return {isPending:false, document:null, success:true, error:null }
      case 'ERROR':
       return {isPending:false, document:null, success:false, error:action.payload }
      default:
@@ -55,7 +57,23 @@ export const useFirestore = (collectionName) => {
   }
 
   //delete a document
-  const deleteDocument = (id) => {
+  const deleteDocument = async (id) => {
+
+   dispatch({type:'IS_PENDING'})
+
+   try {
+      const docRef = doc(db,collectionName,id);
+     
+     await deleteDoc(docRef);
+
+      if (!isCancelled) {
+          dispatch({type:'DELETED_DOCUMENT'});
+      }
+    } catch (e) {
+     if(!isCancelled){
+       dispatch({type:'ERROR', payload:'Could not delete Image'});
+     }
+    }
 
   }
 
