@@ -34,9 +34,6 @@ function DeleteForm() {
     dispatch({ type: "REMOVE_DELETE" });
   };
 
-  const handleCancel = () => {
-    dispatch({ type: "REMOVE_DELETE" });
-  };
 
   return (
     <AnimatePresence>
@@ -61,7 +58,7 @@ function DeleteForm() {
 
             <div className="mt-6 flex space-x-4 justify-end">
               <button
-                onClick={handleCancel}
+                onClick={() => dispatch({ type: "REMOVE_DELETE" })}
                 className="text-white bg-gray-600 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
               >
                 Cancel

@@ -8,8 +8,12 @@ import Header from "./Header";
 import UploadForm from "./UploadForm";
 import ProgressBar from "./ProgressBar";
 import DeleteForm from "./DeleteForm";
+import ImageModal from "./ImageModal";
 
-
+/*
+   Search
+   Autologout
+*/
 function Template(props) {
   return (
     <section className="mx-[6%]">
@@ -19,6 +23,7 @@ function Template(props) {
           <ProgressBar />
           <UploadForm />
           <DeleteForm/>
+          <ImageModal/>
           <Grid />
         </UploadContextProvider>
       </ModalContextProvider>
