@@ -1,13 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { db } from "../firebase/config";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 
-export const useCollection = (collectionName) => {
+export const useCollection = (collectionName, _queryStr) => {
   const [documents, setDocuments] = useState(null);
   const [errror, setError] = useState(null);
 
+  const queryStr = useRef(_queryStr).current;
+
   useEffect(() => {
     let collectionRef = collection(db, collectionName);
+
+    if (queryStr) {
+      collectionRef = query(collectionRef, where(...queryStr));
+    }
 
     const unsubscribe = onSnapshot(
       collectionRef,
@@ -28,7 +34,7 @@ export const useCollection = (collectionName) => {
 
     //unsub on unmount
     return () => unsubscribe();
-  }, [collectionName]);
+  }, [collectionName, queryStr]);
 
   return { documents, errror };
 };

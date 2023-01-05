@@ -1,7 +1,11 @@
+import { useAuthContext } from "../../hooks/useAuthContext";
 import { useCollection } from "../../hooks/useCollection";
 
+
 function Grid(props) {
-  const { documents: images, error } = useCollection('images');
+  const { user } = useAuthContext();
+
+  const { documents: images, error } = useCollection('images',["uid","==", user.uid]);
   return (
     <>
       {error && (
