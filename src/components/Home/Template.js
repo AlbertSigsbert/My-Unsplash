@@ -1,6 +1,8 @@
 //Context Providers
 import { ModalContextProvider } from "../../context/ModalContext";
 import { UploadContextProvider } from "../../context/UploadContext";
+import { SearchContextProvider } from "../../context/SearchContext";
+
 
 //Page components
 import Grid from "./Grid";
@@ -13,10 +15,12 @@ import ImageModal from "./ImageModal";
 /*
    Search
    Autologout
+   SE0 - Title, Social preview
 */
 function Template(props) {
   return (
     <section className="mx-[6%]">
+      <SearchContextProvider>
       <ModalContextProvider>
         <UploadContextProvider>
           <Header />
@@ -27,6 +31,7 @@ function Template(props) {
           <Grid />
         </UploadContextProvider>
       </ModalContextProvider>
+      </SearchContextProvider>
     </section>
   );
 }

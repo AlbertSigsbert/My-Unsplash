@@ -3,27 +3,46 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 import { useModalContext } from "../../hooks/useModalContext";
 import { useCollection } from "../../hooks/useCollection";
 import zoomInIcon from "../../assets/zoom-in.png";
+import { useSearchContext } from "../../hooks/useSearchContext";
+
 
 function Grid(props) {
+
   const { user } = useAuthContext();
   const { dispatch } = useModalContext();
+  const { searchQuery } = useSearchContext();
 
-  const { documents: images, error } = useCollection(
+  const {
+    documents: images,
+    error,
+    message,
+  } = useCollection(
     "images",
     ["uid", "==", user.uid],
-    ["createdAt", "desc"]
+    ["createdAt", "desc"],
+    searchQuery
   );
+
+
   return (
     <>
       {error && (
         <div
-          className="p-4 my-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
+          className="p-4 my-4 font-semibold font-montserrat  text-red-700 bg-red-200 rounded-lg"
           role="alert"
         >
-          <span className="font-medium">Error! </span>
+          <span className="font-bold text-ld">Error! </span>
           {error}
         </div>
       )}
+
+      {message && (
+        <div className="p-4 my-4  text-white font-semibold font-montserrat text-center bg-blue-300 rounded-lg">
+          <span className="font-bold text-lg">Message! </span>
+          {message}
+        </div>
+      )}
+
       {images && (
         <motion.div
           layout
@@ -70,7 +89,7 @@ function Grid(props) {
                       delete
                     </button>
                   </div>
-                  <p className="text-white font-medium text-sm leading-5">
+                  <p className="text-white capitalize font-medium text-sm leading-5">
                     {img.label}
                   </p>
                 </div>

@@ -2,9 +2,7 @@
 
 const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       fontFamily: {
@@ -12,12 +10,9 @@ module.exports = {
         montserrat: ["Montserrat", ...defaultTheme.fontFamily.sans],
       },
       boxShadow: {
-        'custom': '0px 1px 6px rgba(0, 0, 0, 0.1)',
-      }
+        custom: "0px 1px 6px rgba(0, 0, 0, 0.1)",
+      },
     },
   },
-  plugins: [
-    require('tailwind-scrollbar'),
-
-  ],
-}
+  plugins: [],
+};

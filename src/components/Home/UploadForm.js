@@ -29,8 +29,10 @@ function UploadForm() {
   const handleSubmit =  (e) => {
       e.preventDefault();
 
+      const labelConv = label.toLowerCase();
+      
       //Upload image to firebase storage
-      upload(image, label);
+      upload(image, labelConv);
 
       //Reset form fields
       resetForm();
