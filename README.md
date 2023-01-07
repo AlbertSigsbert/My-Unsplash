@@ -75,7 +75,7 @@ $ npm start
  - [Firebase Hosting](https://firebase.google.com/docs/hosting)
  - [Framer Motion](https://www.framer.com/motion/)
 
-## Contact
+## Contact Me
 
 - [Portfolio website](https://albertsigsbert.netlify.app/)
 - [Github](https://github.com/AlbertSigsbert)
