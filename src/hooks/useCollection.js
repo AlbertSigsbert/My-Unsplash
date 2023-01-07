@@ -55,11 +55,15 @@ export const useCollection = (
           setError(null);
           setMessage("No Images found");
 
-          const refresh = () => window.location.reload(true);
-          setTimeout(() => {
-            setMessage(null);
-            refresh();
-          }, 2000)
+          if (searchQuery !== '') {
+            const refresh = () => window.location.reload(true);
+            setTimeout(() => {
+              setMessage(null);
+              refresh();
+            }, 2000)
+          }
+
+        
 
 
         }

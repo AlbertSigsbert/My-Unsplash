@@ -1,0 +1,10 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /images/{allPaths=**} {
+      //allow access to auth user 
+     allow create, read, delete: if request.auth != null;
+     
+    }
+  }
+}

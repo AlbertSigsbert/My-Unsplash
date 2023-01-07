@@ -3,6 +3,7 @@ import { storage } from "../firebase/config";
 import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 import { useUploadContext } from "./useUploadContext";
 import { useFirestore } from "./useFirestore";
+import { v4 as uuidv4 } from 'uuid';
 
 
 
@@ -14,7 +15,9 @@ const useStorage = () => {
   const upload = (file,label) => {
    
     try {
-      const storageRef = ref(storage, file.name);
+      const randomId = uuidv4();
+      const storageRef = ref(storage, `images/${randomId}-${file.name}`);
+      // const storageRef = ref(storage, file.name);
       const uploadTask = uploadBytesResumable(storageRef, file);
 
       uploadTask.on(

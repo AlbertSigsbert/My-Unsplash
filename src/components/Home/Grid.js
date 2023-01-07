@@ -28,7 +28,7 @@ function Grid(props) {
     <>
       {error && (
         <div
-          className="p-4 my-4 font-semibold font-montserrat  text-red-700 bg-red-200 rounded-lg"
+          className="p-4 my-4 font-semibold font-montserrat text-center text-red-700 bg-red-200 rounded-lg"
           role="alert"
         >
           <span className="font-bold text-ld">Error! </span>

@@ -1,0 +1,15 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /images/{document=**} {
+      //allow only auth users to create new images
+     allow create: if request.auth != null;
+
+     //allow auth users to read/delete their own resources
+     allow read, delete: if request.auth.uid == resource.data.uid;
+
+
+
+    }
+  }
+}
