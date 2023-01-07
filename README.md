@@ -67,7 +67,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/AlbertSigsbert/Image-Uploader.git
+$ git clone https://github.com/AlbertSigsbert/My-Unsplash.git
 
 # Install dependencies
 $ npm install
@@ -80,9 +80,11 @@ $ npm start
 
 <!-- This section should list any articles or add-ons/plugins that helps you to complete the project. This is optional but it will help you in the future. For example -->
   #### Articles or add-ons/plugins that helped me to complete the project
-  
+ - [Firebase Authentication](https://firebase.google.com/docs/auth)
+ - [Firebase Firestore](https://firebase.google.com/docs/firestore)
  - [Firebase Storage](https://firebase.google.com/docs/storage)
- - [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)
+ - [Firebase Hosting](https://firebase.google.com/docs/hosting)
+ - [Framer Motion](https://www.framer.com/motion/)
 
 ## Contact
 
