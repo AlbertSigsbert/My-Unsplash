@@ -12,11 +12,11 @@
       Demo
     </a>
     <span> | </span>
-    <a href="https://devchallenges.io/solutions/iIuCqlLkVtq9lg6XHEnI">
+    <a href="https://devchallenges.io/solutions/GavgMuib6BtgncY1iQZL">
       Solution
     </a>
     <span> | </span>
-    <a href="https://devchallenges.io/challenges/O2iGT9yBd6xZBrOcVirx">
+    <a href="https://devchallenges.io/challenges/rYyhwJAxMfES5jNQ9YsP">
       Challenge
     </a>
   </h3>
@@ -36,11 +36,8 @@
 <!-- OVERVIEW -->
 
 ## Overview
-I had a great experience and fun building this project.
-
-I first started styling components based on Figma designs using tailwindcss, then after that, I implemented image upload functionality using NextJS.
-
-For Image uploading I utilized firebase storage SDK, to manage the global state I used the Context API and finally  for the copy-to-clipboard functionality I used the browser's built-in Clipboard API
+ - My Unsplash is a website that allows users to sign in and upload, view and delete Images
+ - Built with ReactJS and Firebase as backend
 
 ![screenshot](https://github.com/AlbertSigsbert/Image-Uploader/blob/main/public/screenshot.png?raw=true)
 
@@ -48,20 +45,19 @@ For Image uploading I utilized firebase storage SDK, to manage the global state 
 ### Built With
 
 <!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
-- [NextJS](https://nextjs.org/)
-- [React](https://reactjs.org/)
+- [ReactJS](https://reactjs.org/)
 - [Tailwind](https://tailwindcss.com/)
 
 ## Features
 
 <!-- List the features of your application or follow the template. Don't share the figma file here :) -->
 
-This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge.<br> The [challenge](https://devchallenges.io/challenges/O2iGT9yBd6xZBrOcVirx) was to build an application to complete the following tasks.
-- User can drag and drop an image to upload it
-- User can choose to select an image from his/her folder
-- User can see a loader when uploading
-- When the image is uploaded, a user can see the image and copy it
-- User can choose to copy to the clipboard
+This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge.<br> The [challenge](https://devchallenges.io/challenges/rYyhwJAxMfES5jNQ9YsP) was to build an application to complete the following tasks.
+- User can see a list of photos in the masonry layout shown In design
+- User ccan add a new photo to the list - the new photo should be on top of the list
+- User can search for photos by label
+- User can hover a photo, and see a label and a delete button
+- User can delete images
 
 ## How To Use
 
@@ -77,7 +73,7 @@ $ git clone https://github.com/AlbertSigsbert/Image-Uploader.git
 $ npm install
 
 # Run the app
-$ npm run dev
+$ npm start
 ```
 
 ## Acknowledgements
