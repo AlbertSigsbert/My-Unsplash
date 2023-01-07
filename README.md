@@ -26,7 +26,7 @@
 
 ## Overview
  - My Unsplash is a website that allows users to sign in and upload, view and delete Images
- - Built with ReactJS and Firebase as backend
+ - Built with ReactJS on the frontend, Firebase as backend and TailwindCSS for styling
 
 ![Home](https://user-images.githubusercontent.com/66664314/211145821-cd54f93a-16c8-419a-8794-611064bf4627.png)
 
