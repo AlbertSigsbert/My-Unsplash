@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useLogin } from "../hooks/useLogin";
 import Logo from "./Logo";
 
@@ -75,6 +76,15 @@ function LoginTemplate(props) {
                   Loading...
                 </button>
               )}
+                <p className="text-sm font-light text-gray-700 dark:text-gray-400">
+                Don't have an account yet?{" "}
+                <Link
+                  to="/signup"
+                  className="font-medium text-blue-600 hover:underline dark:text-blue-500"
+                >
+                  Signup here
+                </Link>
+              </p>
             </form>
           </div>
         </div>
