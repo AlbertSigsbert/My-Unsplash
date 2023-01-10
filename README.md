@@ -63,9 +63,6 @@ $ git clone https://github.com/AlbertSigsbert/My-Unsplash.git
 # Install dependencies
 $ npm install
 
-# Install firebase
-$ npm install firebase
-
 # Register for Firebase (Auth, Firestore & Storage Web SDK)
 
 # Create a local .env file and add your credentials with keys as found in firebase/config.js
