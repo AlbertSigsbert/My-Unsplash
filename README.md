@@ -27,6 +27,7 @@
 ## Overview
  - My Unsplash is a website that allows users to sign in and upload, view and delete Images
  - Built with ReactJS on the frontend, Firebase as backend and TailwindCSS for styling
+ - This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge.
 
 ![Home](https://user-images.githubusercontent.com/66664314/211145821-cd54f93a-16c8-419a-8794-611064bf4627.png)
 
@@ -60,6 +61,14 @@ $ git clone https://github.com/AlbertSigsbert/My-Unsplash.git
 
 # Install dependencies
 $ npm install
+
+# Install firebase
+$ npm install firebase
+
+# Register for Firebase (Auth, Firestore & Storage Web SDK)
+
+# Create a local .env file and add your credentials with keys as found in firebase/config.js
+NB: Remember to prefix them with REACT_APP_
 
 # Run the app
 $ npm start
