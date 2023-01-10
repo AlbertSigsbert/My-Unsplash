@@ -44,10 +44,11 @@
 
 This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge.<br> The [challenge](https://devchallenges.io/challenges/rYyhwJAxMfES5jNQ9YsP) was to build an application to complete the following tasks.
 - User can see a list of photos in the masonry layout shown In design
-- User ccan add a new photo to the list - the new photo should be on top of the list
+- User can add a new photo to the list - the new photo should be on top of the list
 - User can search for photos by label
 - User can hover a photo, and see a label and a delete button
 - User can delete images
+- [Optional] User Authentication
 
 ## How To Use
 
